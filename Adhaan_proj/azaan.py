@@ -7,7 +7,7 @@ import json
 from datetime import datetime 
 import time
 import pychromecast 
-device = pychromecast.Chromecast("192.168.1.187")
+device = pychromecast.Chromecast("192.XXX.X.XXX") #IP address of google home device(s) 
 device.wait() 
 media = device.media_controller
 url = "https://www.islamcan.com/audio/adhan/azan1.mp3" 
@@ -21,7 +21,7 @@ def get_prayer_time(data, prayer_name):
     prayer_time = current_date + ";" + (data['today'][prayer_name])
     return datetime.strptime(prayer_time, "%a,%d %b %Y;%H:%M").time()
 
-url = "https://dailyprayer.abdulrcs.repl.co/api/trenton"
+url = "https://dailyprayer.abdulrcs.repl.co/api/trenton" #Prayer time API, grabs prayer timings in Trenton, NJ - Can be changed 
 response = requests.get(url)
 data = response.json()
 
@@ -59,19 +59,19 @@ if between(Fajr_time,sunrise_time,current_time):
     print("Fajr time")
     
 elif between(Dhuhr_time,Asr_time,current_time): 
-    #media.play_media(url,'audio/mp3')
+    media.play_media(url,'audio/mp3')
     print("Dhuhr time")
    
 elif between(Asr_time,Maghrib_time,current_time): 
-    #media.play_media(url,'audio/mp3')
+    media.play_media(url,'audio/mp3')
     print("Asr time")
     
 elif between(Maghrib_time,M_end,current_time): 
-    #media.play_media(url,'audio/mp3')
+    media.play_media(url,'audio/mp3')
     print("Maghrib time")
    
 elif between(Isha_time,I_end,current_time): 
-    #media.play_media(url,'audio/mp3')
+    media.play_media(url,'audio/mp3')
     print("Isha time")
     
 else: 
